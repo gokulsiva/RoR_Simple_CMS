@@ -1,0 +1,16 @@
+<h1>Hello world from hello page</h1>
+
+<% name = 'Gokul'%>
+<%= "Welcome #{name}"%>
+<br>
+<%
+3.times do |n|
+  %>
+  <%=n%>
+<%end%>
+<br>
+<%= link_to("Index Page",{:action => 'index'})%>
+<br>
+ID : <%=@id%><br>
+Page : <%=@page%><br>
+Character : <%=params['a']%><br>
