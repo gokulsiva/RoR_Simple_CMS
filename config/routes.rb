@@ -2,8 +2,13 @@ Rails.application.routes.draw do
 
   root 'demo#index'
 
-  get 'example_controller/home'
+  resources :subjects do
+    member do
+      get :delete
+    end
+  end
 
+  get 'example_controller/home'
   get 'example_controller/hall'
 
   get 'demo/index'
