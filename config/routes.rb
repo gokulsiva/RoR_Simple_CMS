@@ -8,6 +8,18 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :pages_controller do
+    member do
+      get :delete
+    end
+  end
+
+  resources :sections_controller do
+    member do
+      get :delete
+    end
+  end
+
   get 'example_controller/home'
   get 'example_controller/hall'
 

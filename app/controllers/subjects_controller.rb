@@ -1,5 +1,9 @@
 class SubjectsController < ApplicationController
+
+  layout 'admin'
+
   def index
+    @page_title = "All Subjects"
     @subjects = Subject.all
   end
 
