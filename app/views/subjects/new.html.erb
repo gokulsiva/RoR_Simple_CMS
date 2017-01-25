@@ -2,22 +2,11 @@
 <div class="subject new">
   <h2>Create Subject</h2>
     <%=form_for(@subject) do |f| %>
-      <table summary = "Subject Form Fields">
-        <tr>
-          <th>Name</th>
-          <td><%= f.text_field(:name)%></td>
-        </tr>
-        <tr>
-          <th>Position</th>
-          <td><%= f.text_field(:position)%></td>
-        </tr>
-        <tr>
-          <th>Visible</th>
-          <td><%= f.text_field(:visible)%></td>
-        </tr>
-      </table>
+
+      <%= render(:partial => 'form', :locals => {:f => f})%>
+
       <div class="form-buttons">
-        <%= f.submit("Create Subject")%>        
+        <%= f.submit("Create Subject")%>
       </div>
     <% end %>
 </div>
