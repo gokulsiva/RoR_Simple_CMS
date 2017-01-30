@@ -8,4 +8,6 @@ class Subject < ApplicationRecord
   scope :sorted, lambda{ order("position ASC")}
   scope :search, lambda{|query| where(["name LIKE ?","%#{query}%"])}
 
+  validates_presence_of :name
+
 end

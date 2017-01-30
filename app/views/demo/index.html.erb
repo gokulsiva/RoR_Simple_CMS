@@ -3,3 +3,8 @@
 <%= link_to("Hello Page 2",{:action => 'hello'})%><br>
 
 <%= link_to("Hello Page with parameters",{:action => 'hello', :page => 5, :id => 10, :a => 'c'})%><br>
+<br>
+<a href="#" onclick="jsRoar('I am JavaScript'); return true;">Roar</a>
+<br>
+<br>
+<%= link_to('Roar', '#', :onclick => "jsRoar('I am JavaScript'); return true;")%>

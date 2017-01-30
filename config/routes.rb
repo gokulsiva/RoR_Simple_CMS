@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'demo/hello'
   get 'demo/other_hello'
   get 'demo/google'
+  get 'demo/escape_output'
 
   #root 'example_controller#home'
 
