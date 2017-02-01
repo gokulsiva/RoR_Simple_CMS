@@ -22,7 +22,11 @@ class AdminUser < ApplicationRecord
   validates :first_name, :presence => true, :length => {:maximum => 25}
   validates :last_name, :presence => true, :length => {:maximum => 50}
   validates :username, :presence => true, :length => {:within => 8..25}, :uniqueness => true
+<<<<<<< HEAD
   validates :email, :presence => true, :length => {:within => 6..100}, :format => {:with => EMAIL_REGEX}, :confirmation => true
+=======
+  validates :email, :presence => true, :length => {:within => 5..100}, :format => {:with => EMAIL_REGEX}, :confirmation => true
+>>>>>>> ac71bf0c8af5a6937d2ebf63a4764d6b6710c35c
   validate :username_is_allowed
   validate :no_new_users_on_tuesday, :on => :create
 
@@ -30,7 +34,11 @@ class AdminUser < ApplicationRecord
 
 def username_is_allowed
   if FORBIDDEN_USERNAMES.include?(username)
+<<<<<<< HEAD
     errors.add(:username, "Username not allowed")
+=======
+    errors.add(:username, "has been restricted.")
+>>>>>>> ac71bf0c8af5a6937d2ebf63a4764d6b6710c35c
   end
 end
 
