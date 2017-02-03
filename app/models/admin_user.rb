@@ -1,5 +1,6 @@
 class AdminUser < ApplicationRecord
 
+  has_secure_password
   has_and_belongs_to_many :pages
   has_many :section_edits
   has_many :sections, :through => :section_edits
@@ -22,6 +23,7 @@ class AdminUser < ApplicationRecord
   validates :first_name, :presence => true, :length => {:maximum => 25}
   validates :last_name, :presence => true, :length => {:maximum => 50}
   validates :username, :presence => true, :length => {:within => 8..25}, :uniqueness => true
+  validates :email, :presence => true, :length => {:within => 6..100}, :format => {:with => EMAIL_REGEX}, :confirmation => true
   validates :email, :presence => true, :length => {:within => 5..100}, :format => {:with => EMAIL_REGEX}, :confirmation => true
   validate :username_is_allowed
   validate :no_new_users_on_tuesday, :on => :create
@@ -30,6 +32,7 @@ class AdminUser < ApplicationRecord
 
 def username_is_allowed
   if FORBIDDEN_USERNAMES.include?(username)
+    errors.add(:username, "Username not allowed")
     errors.add(:username, "has been restricted.")
   end
 end
