@@ -7,7 +7,7 @@
   </tr>
   <tr>
     <th>Page</th>
-    <td><%= f.select(:page_id, @pages.map {|p| [p.name, p.id]})%></td>
+    <td><%= f.object.page.name%></td>
   </tr>
   <tr>
     <th>Position</th>
@@ -20,7 +20,7 @@
   <tr>
     <th>Content Type</th>
     <td><%= f.radio_button(:content_type, 'text')%> TEXT</td><br>
-    <td><%= f.radio_button(:content_type, 'html')%> HTML</td>
+    <td><%= f.radio_button(:content_type, 'HTML')%> HTML</td>
   </tr>
   <tr>
     <th>Content</th>

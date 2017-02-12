@@ -18,6 +18,7 @@
       <td><%= status_tag(subject.visible) %></td>
       <td><%= subject.pages.size%></td>
       <td class="actions">
+          <%=link_to("View Pages", pages_controller_index_path(:subject_id => subject.id), :class => 'action_show') %>
           <%=link_to("Show", subject_path(subject), :class => 'action_show') %>
           <%=link_to("Edit", edit_subject_path(subject), :class => 'action_edit') %>
           <%=link_to("Delete", delete_subject_path(subject), :class => 'action_delete') %>

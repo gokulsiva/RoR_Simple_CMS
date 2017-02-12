@@ -2,11 +2,11 @@ class PagesControllerController < ApplicationController
 
   layout 'admin'
   before_action :confirm_logged_in
-  before_action :find_subjects, :only => [:new, :create, :edit, :update]
+  before_action :find_subject
   before_action :set_page_count, :only => [:new, :create, :edit, :update]
 
   def index
-    @pages = Page.sorted
+    @pages = @subject.pages.sorted
   end
 
   def show
@@ -14,14 +14,15 @@ class PagesControllerController < ApplicationController
   end
 
   def new
-    @page = Page.new(:visible => false, :subject_id => 1)
+    @page = Page.new(:subject_id => @subject.id)
   end
 
   def create
     @page = Page.new(page_params)
+    @page.subject_id = @subject
     if @page.save
       flash[:notice] = "Subject created successfully !!"
-      redirect_to(pages_controller_index_path)
+      redirect_to(pages_controller_index_path(:subject_id => @subject.id))
     else
       render('new')
     end
@@ -35,7 +36,7 @@ class PagesControllerController < ApplicationController
     @page = Page.find(params[:id])
     if @page.update_attributes(page_params)
       flash[:notice] = "Page updated successfully"
-      redirect_to(pages_controller_path(@page))
+      redirect_to(pages_controller_path(@page, :subject_id => @subject.id))
     else
       render('edit')
     end
@@ -49,21 +50,21 @@ class PagesControllerController < ApplicationController
     @page = Page.find(params[:id])
     @page.destroy
     flash[:notice] = "#{@page.name} destroyed successfully"
-    redirect_to(pages_controller_index_path)
+    redirect_to(pages_controller_index_path(:subject_id => @subject.id))
   end
 
   private
 
   def page_params
-    params.require(:page).permit(:subject_id, :name, :permalink, :position, :visible)
+    params.require(:page).permit(:name, :permalink, :position, :visible)
   end
 
-  def find_subjects
-    @subjects = Subject.sorted
+  def find_subject
+    @subject = Subject.find(params[:subject_id])
   end
 
   def set_page_count
-    @page_count = Page.count
+    @page_count = @subject.pages.count
     if params[:action] == 'new' || params[:action] == 'create'
       @page_count += 1
     end

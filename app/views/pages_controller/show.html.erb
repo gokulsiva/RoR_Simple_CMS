@@ -1,5 +1,5 @@
-
-<%=link_to('Back to list', pages_controller_index_url, :class => 'back-line') %>
+<% @page_title = "Show Page" %>
+<%=link_to('Back to list', pages_controller_index_path(:subject_id => @subject.id), :class => 'back-line') %>
 <div class="page show">
     <h2>Show Page</h2>
     <table summary="Show page view">

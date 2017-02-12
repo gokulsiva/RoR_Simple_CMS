@@ -1,7 +1,8 @@
-<%=link_to('Back to list', sections_controller_index_path, :class => 'back-line') %>
+<% page_title = "New Section" %>
+<%=link_to('Back to list', sections_controller_index_path(:page_id => @page.id), :class => 'back-line') %>
 <div class="section new">
   <h2>Create Section</h2>
-    <%=form_for(@section, :url => sections_controller_index_path) do |f| %>
+    <%=form_for(@section, :url => sections_controller_index_path(:page_id => @page.id)) do |f| %>
 
             <%= render(:partial => 'form', :locals => {:f => f})%>
             <div class="form-buttons">

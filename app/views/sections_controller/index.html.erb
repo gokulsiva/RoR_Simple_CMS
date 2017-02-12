@@ -1,7 +1,10 @@
+<% page_title = "All Sections" %>
+
+<%= link_to("<< Back to Pages", pages_controller_index_path(:subject_id => @page.subject_id)) %>
 
 <div class="sections index">
   <h2>Sections</h2>
-  <%=link_to("Add new section",new_sections_controller_path,:class => 'action new')%>
+  <%=link_to("Add new section",new_sections_controller_path(:page_id => @page.id),:class => 'action new')%>
   <table class="listing" summary="Sections List">
     <tr class="header">
       <th>#</th>
@@ -17,9 +20,9 @@
       <td><%= section.name%></td>
       <td><%= status_tag(section.visible) %></td>
       <td class="actions">
-          <%=link_to("Show", sections_controller_path(section), :class => 'action_show') %>
-          <%=link_to("Edit", edit_sections_controller_path(section), :class => 'action_edit') %>
-          <%=link_to("Delete", delete_sections_controller_path(section), :class => 'action_delete') %>
+          <%=link_to("Show", sections_controller_path(section, :page_id => @page.id), :class => 'action_show') %>
+          <%=link_to("Edit", edit_sections_controller_path(section, :page_id => @page.id), :class => 'action_edit') %>
+          <%=link_to("Delete", delete_sections_controller_path(section, :page_id => @page.id), :class => 'action_delete') %>
       </td>
     </tr>
     <% end %>
